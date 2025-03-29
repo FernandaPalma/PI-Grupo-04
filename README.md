@@ -2,10 +2,10 @@
 Projeto  Integrador do Curso de Graduação em Desenvolvimento de Software Multiplataforma do 1º semestre de 2025
 
 # Integrantes
-Eduardo Martins
-Fernanda Palma
-Karina Santos
-Kaua Xavier
+Eduardo Martins,
+Fernanda Palma,
+Karina Santos,
+Kaua Xavier;
 
 # Projeto AdvoTech
 Estamos  desenvolvendo  um sistema para um cliente onde  deve  ter  função de organização do cotidiano  e  pratico para o dia  a dia 

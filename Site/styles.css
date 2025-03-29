@@ -1,0 +1,19 @@
+/* Estilos personalizados */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.jumbotron {
+    background: #333;
+    color: white;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+footer {
+    background-color: #343a40;
+    color: #fff;
+}

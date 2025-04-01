@@ -30,7 +30,13 @@ CREATE TABLE IF NOT EXISTS `agendamentos` (
   CONSTRAINT `agendamentos_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
+CREATE TABLE Gerencia (
+    id_usuario INT,
+    id_caso INT,
+    PRIMARY KEY (id_usuario, id_caso),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    FOREIGN KEY (id_caso) REFERENCES Casos(id_caso)
+);
 
 
 CREATE TABLE IF NOT EXISTS `casos` (

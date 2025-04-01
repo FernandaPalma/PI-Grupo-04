@@ -1,3 +1,4 @@
+
  Banco de Dados do Sistema de Advocacia
 Este banco de dados foi projetado para gerenciar clientes, processos jurídicos, documentos, agendamentos e aspectos financeiros de um escritório de advocacia.
 

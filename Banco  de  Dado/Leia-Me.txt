@@ -1,0 +1,91 @@
+ Banco de Dados do Sistema de Advocacia
+Este banco de dados foi projetado para gerenciar clientes, processos jurídicos, documentos, agendamentos e aspectos financeiros de um escritório de advocacia.
+
+Tabelas e Relacionamentos
+Clientes
+Armazena informações pessoais dos clientes.
+
+id (PK)
+
+nome, cpf, email, telefone, endereco, estado_civil, data_cadastro
+
+Casos
+Registra os processos jurídicos de cada cliente.
+
+id (PK)
+
+cliente_id (FK) → Clientes
+
+descricao, tipo_processo, status, data_abertura, data_conclusao
+
+Documentos
+Armazena arquivos relacionados aos casos jurídicos.
+
+id (PK)
+
+caso_id (FK) → Casos
+
+titulo, caminho_arquivo, tipo_documento, data_upload
+
+Agendamentos
+Registra compromissos com os clientes.
+
+id (PK)
+
+cliente_id (FK) → Clientes
+
+data_hora, descricao, status
+
+Pagamentos
+Controle de pagamentos dos clientes.
+
+id (PK)
+
+cliente_id (FK) → Clientes
+
+valor, data_pagamento, metodo, status
+
+Relatórios Financeiros
+Geração de resumos financeiros.
+
+id (PK)
+
+periodo, total_recebido, total_pendente, total_cancelado, data_geracao
+
+Usuários
+Usuários do sistema (ex: advogados, administradores).
+
+id (PK)
+
+nome, email, senha_hash, tipo
+
+ Chaves Primárias (PK) e Estrangeiras (FK)
+Todas as tabelas possuem id como chave primária.
+
+Relacionamentos são feitos via chaves estrangeiras como cliente_id, caso_id.
+
+Tecnologia Utilizada
+Sistema Gerenciador de Banco de Dados (SGBD):
+
+MySQL: versão 8.0 ou superior
+
+MariaDB: versão 10.5 ou superior
+
+Suporta tipos como ENUM, TEXT, DECIMAL, e integra com ferramentas como:
+
+MySQL Workbench
+
+DBeaver
+
+BRModelo
+
+Objetivo
+Organizar e digitalizar o fluxo de trabalho de um escritório de advocacia, facilitando:
+
+O controle de clientes e processos.
+
+O agendamento de compromissos.
+
+A gestão de documentos e pagamentos.
+
+A análise financeira com relatórios.

@@ -1,7 +1,7 @@
 /* Estilos personalizados */
 
 /* Configurações gerais do corpo */
-body {
+.bodyDefault {
     font-family: Arial, sans-serif;
     background-color: #000; /* fundo preto */
     color: #fff; /* texto branco */

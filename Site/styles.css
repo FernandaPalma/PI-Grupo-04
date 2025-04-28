@@ -1,19 +1,83 @@
 /* Estilos personalizados */
 
-body {
+/* Configurações gerais do corpo */
+.bodyDefault {
     font-family: Arial, sans-serif;
+    background-color: #000; /* fundo preto */
+    color: #fff; /* texto branco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.jumbotron {
-    background: #333;
-    color: white;
+/* Container principal do login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
-.card {
-    border-radius: 10px;
+/* Caixa de login */
+.login-box {
+    background-color: #222; /* fundo escuro da caixa */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
 }
 
-footer {
-    background-color: #343a40;
+/* Estilo do título */
+h2 {
+    color: #FFD700; /* cor dourada */
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Estilo para os campos de input */
+.textbox {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.textbox input {
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    border: 2px solid #444;
+    border-radius: 4px;
     color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.textbox input:focus {
+    outline: none;
+    border-color: #FFD700; /* borda dourada no foco */
+}
+
+/* Estilo do botão de login */
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background-color: #FFD700; /* fundo dourado */
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #e6c200; /* dourado mais escuro no hover */
+}
+
+/* Adiciona o efeito de transição suave */
+input, button {
+    transition: all 0.3s ease;
 }

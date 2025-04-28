@@ -1,0 +1,24 @@
+@startuml
+ 
+actor Cliente
+
+boundary "Interface Usuario" as IU
+entity "Processo" as SI
+control "Banco de dado" as BD
+ 
+Cliente -> IU : Entra com Login e senha
+IU -> SI : Envia dados para verificação no login
+SI -> BD : Verifica dados informado
+BD -->SI : Retorna verificação dos dados
+SI --> IU : Status  de login
+Cliente -> IU : Entra  em  Status do Processo
+IU -> SI : Envia solicitação requisitada pelo cliente
+SI -> BD : Verifica  os dados que foram solicitado
+BD -->SI : Retorna com a busca  solicitada
+SI --> IU : Exibe  os dados  buscado
+Cliente -> IU : Logout 
+
+
+
+ 
+@enduml

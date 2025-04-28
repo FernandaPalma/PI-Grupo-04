@@ -1,0 +1,23 @@
+@startuml
+ 
+actor Advogada
+
+boundary "Interface Usuario" as IU
+entity "Processo" as SI
+control "Banco de dado" as BD
+ 
+Advogada -> IU : Entra com Login e senha
+IU -> SI : Alterar Status do processo
+SI -> BD : Salva  alteração realizada
+BD -->SI : Alteração salva
+SI --> IU : Notificar Cliente S[]N[]
+Advogada -> IU : Caso S[] envia Notificação de Status
+IU -> SI : Envia  Notificação de Status
+Advogada -> IU : Caso N[] 
+IU -> SI : Finalizar operação
+Advogada -> IU : Logout 
+
+
+
+ 
+@enduml

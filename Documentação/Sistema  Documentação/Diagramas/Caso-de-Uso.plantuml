@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+ 
+actor "Advogada" as Advogada
+ 
+ 
+rectangle " Sistema Themis"{
+    usecase "Agendamento de consulta" as UC1
+    usecase "Cadastro e Login Usuario" as UC2
+    usecase "Notificação Status" as UC3
+    usecase "Status de Processo" as UC4 
+    usecase "Consulta Posição Financeira" as UC5
+    usecase "Notificação Vencimento" as UC6
+   
+    
+       
+}
+
+
+Advogada --> UC1
+Advogada --> UC2
+Advogada --> UC4
+Advogada --> UC5
+Advogada --> UC6
+
+UC4 --> UC3:<<extend>>
+
+ 
+@enduml

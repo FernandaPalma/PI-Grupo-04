@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escritório de Advocacia Dra Francielli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .bg-black-gold {
+            background-color: #000;
+        }
+        .text-gold {
+            color: #FFD700;
+        }
+        .border-gold {
+            border-color: #FFD700;
+        }
+        .hover\:bg-gold-700:hover {
+            background-color: #b8860b;
+        }
+        .focus\:ring-gold-500:focus {
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-black-gold text-white bodyDefault">
+    <header class="py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-semibold text-gold">Escritório de Advocacia Dra Francielli Palma Maciel</h1>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="#sobre" class="hover:text-gold transition duration-300"><a href="index.html">Início</a></a></li>
+                    <li><a href="#servicos" class="hover:text-gold transition duration-300">Sobre</a></li>
+                    <li><a href="#equipe" class="hover:text-gold transition duration-300"><a href="login.html">Área do Cliente</a></a></li>
+                    <li><a href="#equipe" class="hover:text-gold transition duration-300"><a href="login.html">Área do Advogado</a></a></li>
+                    <li><a href="#contato" class="hover:text-gold transition duration-300">Contato</a></li>
+                </ul>
+            </nav>
+            <button id="menu-button" class="md:hidden text-gold focus:outline-none" aria-label="Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 z-50">
+        <div class="bg-gray-900 w-80 h-full absolute right-0 p-6">
+            <div class="flex justify-end mb-4">
+                <button id="close-menu-button" class="text-gold focus:outline-none" aria-label="Close Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+            <nav class="block">
+                <ul class="space-y-4">
+                    <li><a href="#sobre" class="block text-lg hover:text-gold transition duration-300">Sobre</a></li>
+                    <li><a href="#servicos" class="block text-lg hover:text-gold transition duration-300">Serviços</a></li>
+                    <li><a href="#equipe" class="block text-lg hover:text-gold transition duration-300">Equipe</a></li>
+                    <li><a href="#contato" class="block text-lg hover:text-gold transition duration-300">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        <section id="sobre" class="py-16 px-6">
+            <div class="container mx-auto grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-semibold text-gold mb-4">Sobre Nós</h2>
+                    <p class="text-lg">
+                        
+                        Fundado em 2017, o escritório de advocacia Dra <b>Francielli Palma Maciel</b> nasceu com o propósito de oferecer soluções jurídicas eficientes e personalizadas para seus clientes. Desde o início, buscamos aliar tradição e inovação, garantindo um atendimento transparente, ético e comprometido com a excelência na prestação de serviços jurídicos.
+                        <br>
+                        <br> <b>Missão</b>
+                       <br> Nossa missão é proporcionar segurança jurídica aos nossos clientes, oferecendo serviços de qualidade, fundamentados na ética, na transparência e no compromisso com a melhor solução para cada caso. Valorizamos a proximidade com nossos clientes e trabalhamos para construir relações de confiança e respeito.
+                       <br>
+                       <br> <b>Visão</b> 
+                        <br>Ser referência no setor jurídico, destacando-se pela excelência no atendimento, pela constante atualização e pelo impacto positivo na vida das pessoas e empresas que confiam em nosso trabalho. Buscamos o crescimento sustentável e a consolidação de nossa reputação como um escritório confiável e inovador.
+                        <br>
+                        <br> <b>Valores</b>
+                        <br> - Ética e transparência: Agimos sempre com integridade e clareza em todas as nossas relações.
+                        <br> - Excelência e comprometimento: Buscamos a melhor solução para cada caso com dedicação e profissionalismo.
+                        <br> - Inovação e atualização: Mantemos uma postura proativa na adaptação às mudanças jurídicas e tecnológicas.
+                        <br> - Respeito e confiança: Construímos relações sólidas e duradouras com nossos clientes e parceiros.
+                        <br>
+                        <br> Ao longo dos anos, o escritório [Nome do Escritório] se consolidou como um espaço onde a advocacia é exercida com paixão e responsabilidade, sempre guiada pelo compromisso com a justiça e pelo desejo de transformar vidas por meio do direito.
+                        Caso precise de um texto mais personalizado, posso adaptá-lo ao estilo e às necessidades específicas do escritório. Quer adicionar alguma informação especial?
+                        
+                    </p>
+                </div>
+                <div>
+                    <img src="img/Logo.png" alt="Sobre Nós" class="rounded-lg shadow-lg">
+                </div>
+            </div>
+        </section>
+
+     
+
+        
+    </main>
+
+    <footer class="py-4 px-6 bg-black-gold text-center border-t border-gold">
+        <p class="text-lg">© 2025 Escritório de Advocacia. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        const navLinks = document.querySelectorAll('header nav a');
+        const sections = document.querySelectorAll('section');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        menuButton.addEventListener('click', toggleMobileMenu);
+        closeMenuButton.addEventListener('click', toggleMobileMenu);
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== menuButton) {
+                toggleMobileMenu();
+            }
+        });
+
+        function updateActiveNavLink() {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

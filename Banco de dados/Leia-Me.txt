@@ -1,0 +1,145 @@
+Banco de Dados - Sistema de Gerenciamento de Advocacia
+ Visão Geral
+Este projeto é a modelagem de um banco de dados relacional para um escritório de advocacia.
+Ele permite gerenciar informações sobre:
+
+Clientes
+
+Processos e Fases Processuais
+
+Advogados e Áreas de Atuação
+
+Documentos relacionados aos processos
+
+Financeiro (pagamentos e relatórios)
+
+ Estrutura do Banco de Dados
+Base de Dados: advocaciadb
+
+Principais Tabelas
+
+Tabela	Descrição
+clientes	Armazena informações dos clientes
+casos	Registra os processos
+fase_processo	Controla as fases de um processo
+documento_processo	Armazena documentos relacionados
+advogado	Cadastro de advogados
+area	Áreas de atuação (Civil, Penal etc.)
+advogado_processo	Relação entre advogados e processos
+advogado_area	Relação entre advogados e suas áreas
+pagamentos	Registro de pagamentos
+relatoriosfinanceiros	Relatórios financeiros gerados
+usuarios	Controle de acesso ao sistema
+
+ Principais Relacionamentos
+Um cliente pode ter vários processos.
+
+Um processo passa por várias fases.
+
+Um processo pode ter vários documentos.
+
+Um advogado pode atuar em vários processos.
+
+Um advogado pode atuar em várias áreas do direito.
+
+Cada pagamento é associado a um cliente.
+
+ Scripts de Criação de Tabelas
+As tabelas foram criadas utilizando MySQL/MariaDB com o motor InnoDB para suportar chaves estrangeiras.
+
+As colunas importantes (id) usam AUTO_INCREMENT.
+
+As relações são feitas com FOREIGN KEY (com opção ON DELETE CASCADE para manter a integridade).
+
+ Fases Processuais
+Exemplo de fases controladas pela tabela fase_processo:
+
+Petição Inicial
+
+Defesa
+
+Audiência Inicial
+
+Perícia
+
+Audiência de Prosseguimento
+
+Sentença
+
+Recursos
+
+Execução
+
+Liquidação
+
+Citação
+
+Penhora e Avaliação
+
+Satisfação do Crédito
+
+Arquivamento
+
+Cada fase é vinculada a um processo.
+
+  Tipos de Documentos
+Exemplos de tipos controlados na tabela documento_processo:
+
+Petição Inicial
+
+Defesa
+
+Laudo Pericial
+
+Sentença
+
+Recursos
+
+Contratos
+
+Procurações
+
+  Relatórios Financeiros
+A tabela relatoriosfinanceiros permite gerar relatórios contendo:
+
+Total recebido no período
+
+Total pendente
+
+Total cancelado
+
+Cada linha de relatório armazena um período e os respectivos totais.
+
+  Diagrama Entidade-Relacionamento (ER)
+Se precisar, temos dois diagramas:
+
+Modelo Conceitual (bolinhas): mostra Entidades e Relacionamentos
+
+Modelo Físico: mostra tabelas, chaves primárias e estrangeiras
+
+(As imagens podem ser inseridas aqui no README usando ![Diagrama ER](caminho/diagrama.png) se quiser.)
+
+ Como usar
+Execute o script .sql em um servidor MySQL/MariaDB.
+
+Crie os relacionamentos conforme descrito no modelo.
+
+Comece a inserir dados nas tabelas de clientes, advogados, processos, etc.
+
+ Organização
+Sugestão de organização dos scripts SQL:
+
+pgsql
+Copiar
+Editar
+/scripts/
+    - create_database.sql
+    - create_tables.sql
+    - insert_examples.sql
+    - relationships_diagram.png
+  Observações
+Todos os campos de valor financeiro usam DECIMAL(10,2).
+
+Todas as datas são armazenadas como DATE ou TIMESTAMP.
+
+Uso de enums para campos de status e tipo de documento para manter consistência.

@@ -183,8 +183,50 @@ CREATE TABLE documento_processo (
 );
 
 
+-- Usuário de teste (senha: senha123)
+INSERT INTO usuarios (nome, email, senha_hash, tipo)
+VALUES (
+  'Usuário Teste',
+  'teste@exemplo.com',
+  '$2y$10$PiH9T2LKLv2XZgU94zV/N.G1HKPEtkSi0ubzR57H2KZ40aLz/FJkC',
+  'Administrador'
+);
+
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+
+-- === ALTERAÇÕES PARA USUÁRIO DE TESTE (CLIENTE) ===
+
+-- 1. Adicionar 'Cliente' ao enum da tabela usuarios
+ALTER TABLE usuarios
+MODIFY tipo ENUM('Advogado','Administrador','Cliente') NOT NULL;
+
+-- 2. Adicionar coluna cliente_id na tabela usuarios
+ALTER TABLE usuarios
+ADD COLUMN cliente_id INT DEFAULT NULL,
+ADD CONSTRAINT fk_usuario_cliente FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE SET NULL;
+
+-- 3. Inserir cliente de teste
+INSERT INTO clientes (nome, cpf, email, telefone, endereco, estado_civil)
+VALUES (
+  'Cliente Teste',
+  '123.456.789-00',
+  'cliente@teste.com',
+  '(11) 91234-5678',
+  'Rua Exemplo, 123 - Centro - São Paulo/SP',
+  'Solteiro'
+);
+
+-- 4. Inserir usuário vinculado ao cliente (senha: senha123)
+-- ⚠️ Assume que o cliente inserido tem id = LAST_INSERT_ID()
+INSERT INTO usuarios (nome, email, senha_hash, tipo, cliente_id)
+VALUES (
+  'Cliente Teste',
+  'cliente@teste.com',
+  '$2y$10$PiH9T2LKLv2XZgU94zV/N.G1HKPEtkSi0ubzR57H2KZ40aLz/FJkC',
+  'Cliente',
+  (SELECT id FROM clientes WHERE cpf = '123.456.789-00')
+);

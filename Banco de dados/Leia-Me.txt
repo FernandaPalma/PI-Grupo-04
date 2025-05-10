@@ -1,92 +1,145 @@
+Banco de Dados - Sistema de Gerenciamento de Advocacia
+ Visão Geral
+Este projeto é a modelagem de um banco de dados relacional para um escritório de advocacia.
+Ele permite gerenciar informações sobre:
 
- Banco de Dados do Sistema de Advocacia
-Este banco de dados foi projetado para gerenciar clientes, processos jurídicos, documentos, agendamentos e aspectos financeiros de um escritório de advocacia.
-
-Tabelas e Relacionamentos
 Clientes
-Armazena informações pessoais dos clientes.
 
-id (PK)
+Processos e Fases Processuais
 
-nome, cpf, email, telefone, endereco, estado_civil, data_cadastro
+Advogados e Áreas de Atuação
 
-Casos
-Registra os processos jurídicos de cada cliente.
+Documentos relacionados aos processos
 
-id (PK)
+Financeiro (pagamentos e relatórios)
 
-cliente_id (FK) → Clientes
+ Estrutura do Banco de Dados
+Base de Dados: advocaciadb
 
-descricao, tipo_processo, status, data_abertura, data_conclusao
+Principais Tabelas
 
-Documentos
-Armazena arquivos relacionados aos casos jurídicos.
+Tabela	Descrição
+clientes	Armazena informações dos clientes
+casos	Registra os processos
+fase_processo	Controla as fases de um processo
+documento_processo	Armazena documentos relacionados
+advogado	Cadastro de advogados
+area	Áreas de atuação (Civil, Penal etc.)
+advogado_processo	Relação entre advogados e processos
+advogado_area	Relação entre advogados e suas áreas
+pagamentos	Registro de pagamentos
+relatoriosfinanceiros	Relatórios financeiros gerados
+usuarios	Controle de acesso ao sistema
 
-id (PK)
+ Principais Relacionamentos
+Um cliente pode ter vários processos.
 
-caso_id (FK) → Casos
+Um processo passa por várias fases.
 
-titulo, caminho_arquivo, tipo_documento, data_upload
+Um processo pode ter vários documentos.
 
-Agendamentos
-Registra compromissos com os clientes.
+Um advogado pode atuar em vários processos.
 
-id (PK)
+Um advogado pode atuar em várias áreas do direito.
 
-cliente_id (FK) → Clientes
+Cada pagamento é associado a um cliente.
 
-data_hora, descricao, status
+ Scripts de Criação de Tabelas
+As tabelas foram criadas utilizando MySQL/MariaDB com o motor InnoDB para suportar chaves estrangeiras.
 
-Pagamentos
-Controle de pagamentos dos clientes.
+As colunas importantes (id) usam AUTO_INCREMENT.
 
-id (PK)
+As relações são feitas com FOREIGN KEY (com opção ON DELETE CASCADE para manter a integridade).
 
-cliente_id (FK) → Clientes
+ Fases Processuais
+Exemplo de fases controladas pela tabela fase_processo:
 
-valor, data_pagamento, metodo, status
+Petição Inicial
 
-Relatórios Financeiros
-Geração de resumos financeiros.
+Defesa
 
-id (PK)
+Audiência Inicial
 
-periodo, total_recebido, total_pendente, total_cancelado, data_geracao
+Perícia
 
-Usuários
-Usuários do sistema (ex: advogados, administradores).
+Audiência de Prosseguimento
 
-id (PK)
+Sentença
 
-nome, email, senha_hash, tipo
+Recursos
 
- Chaves Primárias (PK) e Estrangeiras (FK)
-Todas as tabelas possuem id como chave primária.
+Execução
 
-Relacionamentos são feitos via chaves estrangeiras como cliente_id, caso_id.
+Liquidação
 
-Tecnologia Utilizada
-Sistema Gerenciador de Banco de Dados (SGBD):
+Citação
 
-MySQL: versão 8.0 ou superior
+Penhora e Avaliação
 
-MariaDB: versão 10.5 ou superior
+Satisfação do Crédito
 
-Suporta tipos como ENUM, TEXT, DECIMAL, e integra com ferramentas como:
+Arquivamento
 
-MySQL Workbench
+Cada fase é vinculada a um processo.
 
-DBeaver
+  Tipos de Documentos
+Exemplos de tipos controlados na tabela documento_processo:
 
-BRModelo
+Petição Inicial
 
-Objetivo
-Organizar e digitalizar o fluxo de trabalho de um escritório de advocacia, facilitando:
+Defesa
 
-O controle de clientes e processos.
+Laudo Pericial
 
-O agendamento de compromissos.
+Sentença
 
-A gestão de documentos e pagamentos.
+Recursos
 
-A análise financeira com relatórios.
+Contratos
+
+Procurações
+
+  Relatórios Financeiros
+A tabela relatoriosfinanceiros permite gerar relatórios contendo:
+
+Total recebido no período
+
+Total pendente
+
+Total cancelado
+
+Cada linha de relatório armazena um período e os respectivos totais.
+
+  Diagrama Entidade-Relacionamento (ER)
+Se precisar, temos dois diagramas:
+
+Modelo Conceitual (bolinhas): mostra Entidades e Relacionamentos
+
+Modelo Físico: mostra tabelas, chaves primárias e estrangeiras
+
+(As imagens podem ser inseridas aqui no README usando ![Diagrama ER](caminho/diagrama.png) se quiser.)
+
+ Como usar
+Execute o script .sql em um servidor MySQL/MariaDB.
+
+Crie os relacionamentos conforme descrito no modelo.
+
+Comece a inserir dados nas tabelas de clientes, advogados, processos, etc.
+
+ Organização
+Sugestão de organização dos scripts SQL:
+
+pgsql
+Copiar
+Editar
+/scripts/
+    - create_database.sql
+    - create_tables.sql
+    - insert_examples.sql
+    - relationships_diagram.png
+  Observações
+Todos os campos de valor financeiro usam DECIMAL(10,2).
+
+Todas as datas são armazenadas como DATE ou TIMESTAMP.
+
+Uso de enums para campos de status e tipo de documento para manter consistência.

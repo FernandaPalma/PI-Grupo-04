@@ -1,0 +1,80 @@
+@startuml
+ 
+class Advogada {
+    //Atributos da classe cliente
+    -cpf:varchar
+    -nomeCompleto:varchar
+    -dataNascimento:date
+    -telefone:varchar
+    -email:varchar
+    -cep:varchar
+    -logradouro:varchar
+    -numero:varchar
+    -complemento:varchar
+    -bairro:varchar
+    -cidade:varchar
+    -estado:varchar
+    //metodo da classe Advogada
+    -cadastroLoginUsuario()
+    -agendarConsulta()
+    -inserirCliente()
+    -alterarCliente()
+    -lerCliente()
+    -deletarCliente()
+    -definirStatusProcesso()
+    -notificaçãoStatus()
+    -statusProcesso
+    -alterarStatusProcesso
+    -contratoHOnorario()
+    -pagamentoTipoProcesso()
+    -consultadePosiçãoFinanceira()
+    -notificaçãodeVencimento()
+}
+ 
+class  Processo {
+    //Atributos da classe Processo
+    -id:varchar
+    -idCliente:varchar
+    -dataAbertura:date
+    -dataConclusão:date
+    -Descrição:varchar
+    -status:varchar
+    //metodo da classe Processo
+    -contratoHOnorario()
+    -alterar_StatusdoProcesso()
+    -definir_StatusdoProcesso()
+    -notificarCliente()
+   
+}
+
+class Cliente {
+    //Atributos da classe cliente
+    -id:varchar
+    -cpf:varchar
+    -nomeCompleto:varchar
+    -dataNascimento:date
+    -telefone:varchar
+    -email:varchar
+    -cep:varchar
+    -logradouro:varchar
+    -numero:varchar
+    -complemento:varchar
+    -bairro:varchar
+    -cidade:varchar
+    -estado:varchar
+    -dataCadastro:date
+    //Para Pessoa Jurídica:
+    -razãoSocial:varchar
+    -nomeFantasia:varchar
+    -cnpj:varchar
+    -inscriçãoEstadual:varchar
+    -nomeResponsável:varchar
+    //metodo da classe Cliente
+    -cadastro_LoginUsuario()
+    -statusdeProcesso()
+    -consultadePosiçãoFinanceira()
+    -notificaçãodeVencimento()
+}
+ 
+@endum
+ 

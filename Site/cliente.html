@@ -1,220 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portal do Cliente - Escritório Dra Francielli</title>
-  <style>
-      body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
-    }
-     /* Cabeçalho com nome do escritório e logo */
-     .cabecalho {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #000000;
-      color: white;
-      padding: 10px 20px;
-    }
-    .cabecalho .logo {
-      height: 200px;
-    }
-    .cabecalho .titulo {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    header {
-      background-color: #000000;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    main {
-      max-width: 900px;
-      margin: 20px auto;
-      background: black;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    h2 {
-      color: white;
-    }
-    ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    li {
-      padding: 8px 0;
-      border-bottom: 1px solid #ccc;
-      
-    }
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin-top: 30px;
-    }
-    .fase {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 20px;
-      flex-wrap: wrap; /* Para quebrar as caixas em várias linhas */
-    }
-    .fase .caixa {
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      border: 2px solid #2c3e50;
-      width: 160px; /* Reduzindo o tamanho das caixas */
-      text-align: center;
-      font-size: 14px; /* Ajustando o tamanho da fonte */
-    }
-    .fase .seta {
-      font-size: 30px;
-      color: #2980b9;
-      margin-top: 20px;
-    }
-    .fase-conhecimento, .fase-execucao {
-      margin: 20px 0;
-    }
-    .fase-conhecimento .caixa, .fase-execucao .caixa {
-      background-color: #ecf0f1;
-      width: 160px;
-    }
-    .fase h2 {
-      font-size: 18px;
-      color: #2c3e50;
-    }
-    .fase-conhecimento, .fase-execucao {
-      margin: 20px 0;
-    }
-    .fase-conhecimento .caixa, .fase-execucao .caixa {
-      background-color: #ecf0f1;
-      width: 220px;
-    }
-    .fase h2 {
-      font-size: 24px;
-      color: #2c3e50;
-    }
-    #mensagem {
-      margin-top: 30px;
-      font-size: 18px;
-      font-weight: bold;
-      color: white;
-    }
-    .financeiro, .documentos {
-      margin-top: 30px;
-    }
-    .financeiro p, .documentos ul {
-      margin: 10px 0;
-    }
-    .documentos a {
-      text-decoration: none;
-      color: #2980b9;
-    }
-    .documentos a:hover {
-      text-decoration: underline;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Cliente</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <style>
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .bg-black-gold {
+            background-color: #000;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 20px;
+            background-color: #000;
+        }
 
-    }
-  </style>
+        header h1, header p {
+            margin: 0;
+        }
+        header p {
+            font-size: 0.9em;
+            color: #000;
+        }
+
+        main {
+            padding: 20px;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <!-- Cabeçalho com nome e logo -->
-  <div class="cabecalho">
-    <div class="titulo">Escritório da Dra. Francielli</div>
-    <img class="logo" src="img/Logo.png" alt="Logo do Escritório">
-  </div>
-    <h1>Portal do Cliente</h1>
-    <p>Bem-vindo ao seu painel de acompanhamento de processos!</p>
-  </header>
-  <main>
- 
-    <div class="container">
-      <h1> Fase de Conhecimento</h1>
-      
-      <!-- Fase de Conhecimento -->
-      <div class="fase fase-conhecimento">
-        <div class="caixa" onclick="marcarFase(this, 'Petição inicial')">1) Petição inicial</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Defesa')">2) Defesa</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Audiência inicial')">3) Audiência inicial</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Perícia')">4) Perícia</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Audiência de prosseguimento')">5) Audiência de prosseguimento</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Sentença')">6) Sentença</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Recursos da fase de conhecimento')">7) Recursos</div>
-      </div>
-      
-      <h1> Fase de Execução</h1>
-      <!-- Fase de Execução -->
-      <div class="fase fase-execucao">
-        <div class="caixa" onclick="marcarFase(this, 'Liquidação da sentença')">1) Liquidação da sentença</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Sentença de liquidação')">2) Sentença de liquidação</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Citação')">3) Citação</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Penhora e avaliação')">4) Penhora e avaliação</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Sentença de embargos')">5) Sentença de embargos</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Satisfação do crédito')">6) Satisfação do crédito</div>
-        <div class="seta">➜</div>
-        <div class="caixa" onclick="marcarFase(this, 'Arquivamento')">7) Arquivamento</div>
-      </div>
+<body class="bg-black-gold text-white">
+    <nav class="navbar navbar-expand-lg text-white bg-black-gold">
+        <a class="navbar-brand" href="#">
+            <img src="img/Logo.png" alt="Logo" class="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a href="index.html" class="hover:text-gold transition duration-300">Início <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="sobre.html" class="hover:text-gold transition duration-300"> Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="hover:text-gold transition duration-300"> Área do Cliente</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="hover:text-gold transition duration-300"> Área Advogado</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html" class="hover:text-gold transition duration-300"> Contato</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+        <div style="text-align: center">
+            <h1>Portal do Cliente</h1>
+            <p>Bem-vindo ao seu painel de acompanhamento de processos!</p>
+        </div>
 
-       <!-- Mensagem sobre a fase -->
-    <div id="mensagem"></div>
-  </div>
+    <main>
 
-  <script>
-    // Função que marca a fase e exibe a mensagem
-    function marcarFase(elemento, fase) {
-      // Remover a classe 'ativo' de todas as caixas
-      let caixas = document.querySelectorAll('.caixa');
-      caixas.forEach(caixa => {
-        caixa.classList.remove('ativo');
-      });
+        <h1> Número do processo: 2876346</h1>
+        <section class="fase-conhecimento">
+            <h2>Fase de Conhecimento</h2>
+            <ol>
+                <li>Petição inicial</li>
+                <li>Defesa</li>
+                <li>Audiência inicial</li>
+                <li>Perícia</li>
+                <li>Audência de prosseguimento</li>
+                <li>Sentença</li>
+                <li>Recursos</li>
+            </ol>
+        </section>
 
-      // Adicionar a classe 'ativo' à fase clicada
-      elemento.classList.add('ativo');
+        <section class="fase-execucao">
+            <h2>Fase de Execução</h2>
+            <ol>
+                <li>Liquidação da sentença</li>
+                <li>Sentença de liquidação</li>
+                <li>Citação</li>
+                <li>Penhora e avaliação</li>
+                <li>Sentença de embargos</li>
+                <li>Satisfação do crédito</li>
+                <li>Arquivamento</li>
+            </ol>
+        </section>
 
-      // Exibir a mensagem sobre a fase
-      document.getElementById('mensagem').innerText = "Você está na fase: " + fase;
-    }
-  </script>
+        <section class="financeiro">
+            <h2>Relação Financeira</h2>
+            <p><strong>Valor Total do Processo:</strong> R$ <span id="valor-total">00,00</span></p>
+            <p><strong>Valor Pago:</strong> R$ <span id="valor-pago">00,00</span></p>
+            <p><strong>Valor a Pagar:</strong> R$ <span id="valor-a-pagar">00,00</span></p>
+            <p><strong>Pendências: </strong> R$ <span id="valor-a-pagar">00,00</span></p>
+        </section>
 
-  </body>
-  </html>
+        <section class="documentacao">
+            <h2>Documentação</h2>
+            <ul>
+                <li><a href="#">Petição Inicial</a></li>
+                <li><a href="#">Defesa</a></li>
+                <li><a href="#">Laudo Pericial</a></li>
+                <li><a href="#">Sentença</a></li>
+                <li><a href="#">Recursos</a></li>
+            </ul>
+        </section>
+    </main>
 
-    <section class="financeiro">
-      <h2>Informações Financeiras</h2>
-      <p><strong>Valor Total do Processo:</strong> R$ 12.000,00</p>
-      <p><strong>Valor Já Pago:</strong> R$ 4.500,00</p>
-      <p><strong>Valor a Pagar:</strong> R$ 7.500,00</p>
-    </section>
-
-    <section class="documentos">
-      <h2>Documentação do Processo</h2>
-      <ul>
-        <li><a href="documentos/peticao-inicial.pdf" target="_blank">📄 Petição Inicial</a></li>
-        <li><a href="documentos/defesa.pdf" target="_blank">📄 Defesa</a></li>
-        <li><a href="documentos/pericia.pdf" target="_blank">📄 Laudo Pericial</a></li>
-        <li><a href="documentos/sentenca.pdf" target="_blank">📄 Sentença</a></li>
-        <li><a href="documentos/recursos.pdf" target="_blank">📄 Recursos</a></li>
-      </ul>
-    </section>
-  </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGaFjF0m4jG6fEjfZr7c2v2n5M"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </body>
 </html>

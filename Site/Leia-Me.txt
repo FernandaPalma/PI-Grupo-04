@@ -1,0 +1,35 @@
+🏛️ Site de Advocacia - Sistema de Gestão Jurídica
+Este projeto é um sistema completo desenvolvido para escritórios de advocacia, oferecendo uma plataforma moderna para gerenciamento de agendamentos, processos, equipe e áreas de atuação. O sistema conta com áreas exclusivas para clientes e advogados, proporcionando maior organização e facilidade no dia a dia jurídico.
+
+🔗 Funcionalidades Principais
+🌐 Área Pública (Visitantes)
+📅 Agendamento de horários com os advogados do escritório
+
+🏛️ História do escritório e valores institucionais
+
+👥 Equipe jurídica com apresentação dos profissionais
+
+⚖️ Áreas de atuação com descrição dos serviços prestados
+
+👤 Área do Cliente (Login necessário)
+🔐 Login seguro para acesso individual
+
+📂 Consulta de processos vinculados ao cliente
+
+📄 Acesso a documentações relevantes e atualizadas
+
+⚖️ Área do Advogado (Login necessário)
+💼 Visualização e controle de processos judiciais
+
+📅 Gerenciamento de agendamentos
+
+💰 Acesso ao painel financeiro com informações sobre honorários, pagamentos e despesas
+
+🛠️ Tecnologias Utilizadas
+PHP com PDO para conexão segura ao banco de dados MySQL
+
+MySQL como banco de dados relacional
+
+HTML, CSS (tema escuro personalizado) e Bootstrap para o front-end
+
+Sessões em PHP para controle de acesso e autenticação

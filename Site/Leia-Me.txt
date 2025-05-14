@@ -32,4 +32,9 @@ MySQL como banco de dados relacional
 
 HTML, CSS (tema escuro personalizado) e Bootstrap para o front-end
 
-Sessões em PHP para controle de acesso e autenticação
+Sessões em PHP para controle de acesso e autenticação.
+
+📌 Observações
+Este projeto é apenas um protótipo e pode ser expandido para incluir funcionalidades como notificações, relatórios, upload de documentos, entre outros.
+
+A segurança foi considerada com práticas básicas de autenticação e uso de PDO para evitar SQL Injection.

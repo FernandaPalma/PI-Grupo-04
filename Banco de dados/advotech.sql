@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15/05/2025 às 21:44
+-- Tempo de geração: 20/05/2025 às 22:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -73,7 +73,8 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nome`, `cpf`, `email`, `telefone`, `endereco`, `estado_civil`, `data_cadastro`) VALUES
-(1, 'Cliente Teste', '123.456.789-00', 'cliente@teste.com', '(11) 91234-5678', 'Rua Exemplo, 123 - Centro - São Paulo/SP', 'Solteiro', '2025-05-14 19:35:12');
+(1, 'Cliente Teste', '123.456.789-00', 'cliente@teste.com', '(11) 91234-5678', 'Rua Exemplo, 123 - Centro - São Paulo/SP', 'Solteiro', '2025-05-14 19:35:12'),
+(2, 'Teste da Silva', '123.456.789-11', 'testesiva@teste.com', '(19) 99999-9999', 'Rua Exemplo, 445 - Centro - Araras', 'Divorciado', '2025-05-20 20:43:15');
 
 -- --------------------------------------------------------
 
@@ -140,13 +141,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha_hash`, `tipo`, `cliente_id`) VALUES
-(1, 'Cliente Teste', 'cliente@teste.com', 'senha123', 'Cliente', 1),
-(2, 'Usuário Teste', 'teste@exemplo.com', '$2y$10$PiH9T2LKLv2XZgU94zV/N.G1HKPEtkSi0ubzR57H2KZ40aLz/FJkC', 'Administrador', NULL);
-
-
-UPDATE usuarios
-SET senha_hash = '$2y$12$ncRZa4/c46AXeMhCjy7tZueeMhhbxyZLE1KVzb4AFXU93g8tpfv92'
-WHERE email = 'cliente@teste.com';
+(1, 'Cliente Teste', 'cliente@teste.com', '$2y$12$ncRZa4/c46AXeMhCjy7tZueeMhhbxyZLE1KVzb4AFXU93g8tpfv92', 'Cliente', 1),
+(2, 'Usuário Teste', 'teste@exemplo.com', '$2y$12$ncRZa4/c46AXeMhCjy7tZueeMhhbxyZLE1KVzb4AFXU93g8tpfv92', 'Administrador', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -222,7 +218,7 @@ ALTER TABLE `casos`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `documentos`
@@ -286,4 +282,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-

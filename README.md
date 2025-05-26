@@ -5,6 +5,7 @@ Projeto  Integrador do Curso de Graduação em Desenvolvimento de Software Multi
 Eduardo Martins,
 Fernanda Palma,
 Karina Santos;
+Marcos Zambom
 
 # Projeto AdvoTech
 Estamos  desenvolvendo  um sistema para um cliente onde  deve  ter  função de organização do cotidiano  e  pratico para o dia  a dia 

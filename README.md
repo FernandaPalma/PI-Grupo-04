@@ -20,12 +20,15 @@ Estamos desenvolvendo um sistema personalizado para um cliente, com o objetivo d
 
 Esse sistema será projetado para ser intuitivo e de fácil utilização, com funcionalidades que atendem às necessidades diárias do cliente, como gerenciamento de compromissos, controle de tarefas, lembretes, além de outras ferramentas que contribuam para aumentar a produtividade e a organização.
 
-# 2. Intalação GitClone
+# 2. Próximas Versões
+Linkar o google agendas com o sistema.
+
+# 3. Intalação GitClone
 Clone Repositorio 
 
 git clone : https://github.com/Eduardo1Martins/PI-Grupo-04.git
 
-# 3. Contato
+# 4. Contato
 Email:
 
 

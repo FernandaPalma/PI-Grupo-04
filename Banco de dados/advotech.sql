@@ -142,7 +142,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha_hash`, `tipo`, `cliente_id`) VALUES
 (1, 'Cliente Teste', 'cliente@teste.com', '$2y$12$ncRZa4/c46AXeMhCjy7tZueeMhhbxyZLE1KVzb4AFXU93g8tpfv92', 'Cliente', 1),
-(2, 'Usuário Teste', 'teste@exemplo.com', '$2y$12$ncRZa4/c46AXeMhCjy7tZueeMhhbxyZLE1KVzb4AFXU93g8tpfv92', 'Administrador', NULL);
+(2, 'Usuário Teste', 'teste@exemplo.com', '$2y$12$ncRZa4/c46AXeMhCjy7tZueeMhhbxyZLE1KVzb4AFXU93g8tpfv92', 'Administrador', 2);
 
 --
 -- Índices para tabelas despejadas

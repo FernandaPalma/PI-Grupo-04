@@ -5,16 +5,6 @@ require_once 'C:\xampp\htdocs\PI-Grupo-04\PHP\classes\Cliente.php';
 
 session_start();
 
-/*if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: \PI-Grupo-04\Site\cadastro.html");
-    exit("Acesso não autorizado.");
-}
-
-if ($_SESSION['tipo'] !== 'Administrador' && $_SESSION['tipo'] !== 'Advogado') {
-    exit("Você não tem permissão para acessar esta página.");
-}
-*/
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $clienteObj = new Cliente();
 

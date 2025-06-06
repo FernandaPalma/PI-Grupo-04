@@ -1,3 +1,19 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario'])) {
+  header("Location: index.html");
+  exit();
+}
+
+$tiposPermitidos = ['Administrador', 'Advogado'];
+if (!in_array($_SESSION['usuario']['tipo'], $tiposPermitidos)) {
+  echo "Acesso negado. Você não tem permissão para acessar esta página.";
+  header("Location: cliente.php");
+  exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -53,7 +69,9 @@
           <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre</a></li>
           <li class="nav-item"><a class="nav-link" href="login.html">Área do Cliente</a></li>
           <li class="nav-item"><a class="nav-link" href="login.html">Área Advogado</a></li>
-          <li class="nav-item"><a class="nav-link" href="agendamento.html">Agendamento</a></li>
+          <li class="nav-item"><a class="nav-link" href="agendamento.php">Agendamento</a></li>
+          <li class="nav-item"><a class="nav-link" href="/PI-Grupo-04/PHP/logout.php">Sair</a></li>
+          
         </ul>
       </div>
     </div>

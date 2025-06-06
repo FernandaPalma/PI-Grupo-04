@@ -5,12 +5,6 @@ require_once 'C:\xampp\htdocs\PI-Grupo-04\PHP\classes\Agendamento.php';
 
 session_start();
 
-/*if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: \PI-Grupo-04\Site\index.html");
-    exit("Acesso não autorizado.");
-}
-*/
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'] ?? '';
     $data = $_POST['data'] ?? '';

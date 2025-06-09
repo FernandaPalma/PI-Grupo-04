@@ -224,3 +224,104 @@ SELECT * FROM Clientes;
 SELECT * FROM Processos;
 SELECT * FROM TransacoesFinanceiras;
 SELECT * FROM Agendamentos;
+
+SELECT
+    P.numero_processo,
+    C.nome AS nome_cliente,
+    P.valor_total,
+    P.valor_pago,
+    P.valor_a_pagar
+FROM
+    Processos AS P
+INNER JOIN
+    Clientes AS C ON P.cliente_id = C.cliente_id;
+    
+    
+    
+    
+    DELIMITER //
+
+CREATE FUNCTION CalcularTotalPendenciasCliente(p_cliente_id INT)
+RETURNS DECIMAL(10, 2)
+READS SQL DATA
+BEGIN
+    DECLARE total_pendencias DECIMAL(10, 2);
+
+    SELECT SUM(valor_a_pagar)
+    INTO total_pendencias
+    FROM Processos
+    WHERE cliente_id = p_cliente_id;
+
+    RETURN IFNULL(total_pendencias, 0.00);
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE ListarProcessosETransacoesCliente(IN p_cliente_id INT)
+BEGIN
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE v_processo_id INT;
+    DECLARE v_numero_processo VARCHAR(50);
+    DECLARE v_data_transacao DATE;
+    DECLARE v_tipo_transacao ENUM('Recebimento', 'Pagamento', 'Custo');
+    DECLARE v_valor DECIMAL(10, 2);
+    DECLARE v_descricao VARCHAR(255);
+
+    -- Cursor para selecionar os processos do cliente
+    DECLARE cur_processos CURSOR FOR
+        SELECT processo_id, numero_processo
+        FROM Processos
+        WHERE cliente_id = p_cliente_id;
+
+    -- Handler para sair do loop quando não houver mais linhas
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    -- Abrir o cursor de processos
+    OPEN cur_processos;
+
+    processo_loop: LOOP
+        FETCH cur_processos INTO v_processo_id, v_numero_processo;
+
+        IF done THEN
+            LEAVE processo_loop;
+        END IF;
+
+        -- Exibir o número do processo
+        SELECT CONCAT('--- Processo: ', v_numero_processo, ' ---') AS InfoProcesso;
+
+        -- Cursor interno para as transações financeiras de cada processo
+        BEGIN
+            DECLARE done_transacao INT DEFAULT FALSE;
+            DECLARE cur_transacoes CURSOR FOR
+                SELECT data_transacao, tipo_transacao, valor, descricao
+                FROM TransacoesFinanceiras
+                WHERE processo_id = v_processo_id
+                ORDER BY data_transacao;
+
+            DECLARE CONTINUE HANDLER FOR NOT FOUND SET done_transacao = TRUE;
+
+            OPEN cur_transacoes;
+
+            transacao_loop: LOOP
+                FETCH cur_transacoes INTO v_data_transacao, v_tipo_transacao, v_valor, v_descricao;
+
+                IF done_transacao THEN
+                    LEAVE transacao_loop;
+                END IF;
+
+                -- Exibir os detalhes da transação
+                SELECT CONCAT('  Data: ', v_data_transacao, ', Tipo: ', v_tipo_transacao, ', Valor: R$', v_valor, ', Descrição: ', IFNULL(v_descricao, '')) AS InfoTransacao;
+
+            END LOOP transacao_loop;
+
+            CLOSE cur_transacoes;
+        END;
+
+    END LOOP processo_loop;
+
+    CLOSE cur_processos;
+END //
+
+DELIMITER ;

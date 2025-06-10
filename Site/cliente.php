@@ -1,8 +1,18 @@
+<?php
+session_start();
+
+// Redireciona se não estiver logado
+if (!isset($_SESSION['usuario'])) {
+  header("Location: index.html");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portal do Cliente</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet"
@@ -82,13 +92,13 @@
           <a href="sobre.html" class="nav-link text-white hover:text-gold">Sobre</a>
         </li>
         <li class="nav-item">
-          <a href="login.html" class="nav-link text-white hover:text-gold">Área do Cliente</a>
+          <a href="agendamento.php" class="nav-link text-white hover:text-gold">Agendamento</a>
         </li>
         <li class="nav-item">
-          <a href="login.html" class="nav-link text-white hover:text-gold">Área Advogado</a>
+          <a href="cadastro.php" class="nav-link text-white hover:text-gold">Cadastro</a>
         </li>
         <li class="nav-item">
-          <a href="agendamento.html" class="nav-link text-white hover:text-gold">Agendamento</a>
+          <a href="/PI-Grupo-04/PHP/logout.php" class="nav-link text-white hover:text-gold">Sair</a>
         </li>
       </ul>
     </div>

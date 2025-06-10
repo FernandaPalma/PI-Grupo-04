@@ -4,8 +4,8 @@ Projeto  Integrador do Curso de Graduação em Desenvolvimento de Software Multi
 # Integrantes
 Eduardo Martins,
 Fernanda Palma,
-Karina Santos,
-Kaua Xavier;
+Karina Santos;
+Marcos Zambom
 
 # Projeto AdvoTech
 Estamos  desenvolvendo  um sistema para um cliente onde  deve  ter  função de organização do cotidiano  e  pratico para o dia  a dia 
@@ -20,12 +20,15 @@ Estamos desenvolvendo um sistema personalizado para um cliente, com o objetivo d
 
 Esse sistema será projetado para ser intuitivo e de fácil utilização, com funcionalidades que atendem às necessidades diárias do cliente, como gerenciamento de compromissos, controle de tarefas, lembretes, além de outras ferramentas que contribuam para aumentar a produtividade e a organização.
 
-# 2. Intalação GitClone
+# 2. Próximas Versões
+Linkar o google agendas com o sistema.
+
+# 3. Intalação GitClone
 Clone Repositorio 
 
 git clone : https://github.com/Eduardo1Martins/PI-Grupo-04.git
 
-# 3. Contato
+# 4. Contato
 Email:
 
 

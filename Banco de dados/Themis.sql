@@ -29,6 +29,18 @@ CREATE TABLE IF NOT EXISTS FasesProcesso (
     FOREIGN KEY (processo_id) REFERENCES Processos(processo_id)
 );
 
+-- Tabela Usuarios
+CREATE TABLE IF NOT EXISTS Usuarios (
+    usuario_id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20),
+    cpf VARCHAR(14) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    endereco VARCHAR(255),
+    estado_civil ENUM('Solteiro', 'Casado', 'Divorciado', 'Viúvo', 'União Estável') DEFAULT 'Solteiro',
+    data_cadastro DATE DEFAULT CURRENT_DATE
+);
+
 -- Tabela DocumentosProcesso
 CREATE TABLE IF NOT EXISTS DocumentosProcesso (
     documento_id INT AUTO_INCREMENT PRIMARY KEY,

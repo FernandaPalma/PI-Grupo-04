@@ -7,6 +7,17 @@ CREATE TABLE IF NOT EXISTS Clientes (
     nome VARCHAR(255) NOT NULL
 );
 
+-- Tabela Usuarios
+CREATE TABLE IF NOT EXISTS Usuarios (
+    usuario_id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20),
+    cpf VARCHAR(14) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    endereco VARCHAR(255),
+    estado_civil ENUM('Solteiro', 'Casado', 'Divorciado', 'Viúvo', 'União Estável') DEFAULT 'Solteiro',
+    data_cadastro DATE DEFAULT CURRENT_DATE
+    
 -- Tabela Processos
 CREATE TABLE IF NOT EXISTS Processos (
     processo_id INT AUTO_INCREMENT PRIMARY KEY,

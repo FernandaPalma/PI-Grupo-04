@@ -1,7 +1,8 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['usuario'])) {
-  header("Location: index.html");
+  header("Location: login.html");
   exit();
 }
 
@@ -126,12 +127,13 @@ if (!in_array($_SESSION['usuario']['tipo'], $tiposPermitidos)) {
        <img src="img/Logo.png" alt="Logo do Escritório" class="h-10">
       <nav class="hidden md:block">
         <ul class="flex space-x-6">
-          <li><a href="index.html" class="hover:text-gold transition duration-300">Início</a></li>
-          <li><a href="#sobre" class="hover:text-gold transition duration-300">Sobre</a></li>
-          <li><a href="login.html" class="hover:text-gold transition duration-300">Área do Cliente</a></li>
-          <li><a href="login.html" class="hover:text-gold transition duration-300">Área do Advogado</a></li>
+          <li><a href="index.php" class="hover:text-gold transition duration-300">Início</a></li>
+          <li><a href="sobre.html" class="hover:text-gold transition duration-300">Sobre</a></li>
+          <li><a href="cliente.php" class="hover:text-gold transition duration-300">Processos</a></li>
+          <li><a href="financeiro.php" class="hover:text-gold transition duration-300">Financeiro</a></li>
+          <li><a href="usuario.php" class="hover:text-gold transition duration-300">Usuários</a></li>
           <li><a href="agendamento.php" class="hover:text-gold transition duration-300">Agendamento</a></li>
-          <li><a href="/PI-Grupo-04/PHP/logout.php" class="hover:text-gold transition duration-300">Sair</a></li>
+          <li><a href="PHP\logout.php" class="hover:text-gold transition duration-300">Sair</a></li>
           
         </ul>
       </nav>
@@ -158,19 +160,19 @@ if (!in_array($_SESSION['usuario']['tipo'], $tiposPermitidos)) {
                     <input type="email" name="email" placeholder="E-mail" required>
                 </div>
                 <div class="textbox">
-                    <input type="text" name="telefone" placeholder="Telefone (com DDD)">
+                    <input type="text" name="telefone" placeholder="Telefone (com DDD)" required>
                 </div>
                 <div class="textbox">
-                    <input type="text" name="endereco" placeholder="Endereço completo">
+                    <input type="text" name="endereco" placeholder="Endereço completo" required>
                 </div>
                 <div class="textbox">
                     <select name="estado_civil" required>
-                        <option value="">Estado civil</option>
-                        <option value="Solteiro">Solteiro</option>
-                        <option value="Casado">Casado</option>
-                        <option value="Divorciado">Divorciado</option>
-                        <option value="Viúvo">Viúvo</option>
-                        <option value="União Estável">União Estável</option>
+                        <option class="text-black" value="">Estado civil</option>
+                        <option class="text-black" value="Solteiro">Solteiro</option>
+                        <option class="text-black" value="Casado">Casado</option>
+                        <option class="text-black" value="Divorciado">Divorciado</option>
+                        <option class="text-black" value="Viúvo">Viúvo</option>
+                        <option class="text-black" value="União Estável">União Estável</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-login">Cadastrar</button>

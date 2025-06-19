@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// Redireciona se não estiver logado
 if (!isset($_SESSION['usuario'])) {
-  header("Location: index.html");
+  header("Location: login.html");
   exit();
 }
 
 $tiposPermitidos = ['Administrador', 'Advogado'];
+
 if (!in_array($_SESSION['usuario']['tipo'], $tiposPermitidos)) {
   echo "Acesso negado. Você não tem permissão para acessar esta página.";
   header("Location: cliente.php");
@@ -126,12 +126,13 @@ if (!in_array($_SESSION['usuario']['tipo'], $tiposPermitidos)) {
        <img src="img/Logo.png" alt="Logo do Escritório" class="h-10">
       <nav class="hidden md:block">
         <ul class="flex space-x-6">
-          <li><a href="index.html" class="hover:text-gold transition duration-300">Início</a></li>
-          <li><a href="#sobre" class="hover:text-gold transition duration-300">Sobre</a></li>
-          <li><a href="login.html" class="hover:text-gold transition duration-300">Área do Cliente</a></li>
-          <li><a href="login.html" class="hover:text-gold transition duration-300">Área do Advogado</a></li>
-          <li><a href="agendamento.html" class="hover:text-gold transition duration-300">Agendamento</a></li>
-          <li><a href="/PI-Grupo-04/PHP/logout.php" class="hover:text-gold transition duration-300">Sair</a></li>
+          <li><a href="index.php" class="hover:text-gold transition duration-300">Início</a></li>
+          <li><a href="sobre.html" class="hover:text-gold transition duration-300">Sobre</a></li>
+          <li><a href="cliente.php" class="hover:text-gold transition duration-300">Processos</a></li>
+          <li><a href="financeiro.php" class="hover:text-gold transition duration-300">Financeiro</a></li>
+          <li><a href="usuario.php" class="hover:text-gold transition duration-300">Usuários</a></li>
+          <li><a href="cadastro.php" class="hover:text-gold transition duration-300">Cadastro</a></li>
+          <li><a href="PHP\logout.php" class="hover:text-gold transition duration-300">Sair</a></li>
         </ul>
       </nav>
       <button id="menu-button" class="md:hidden text-gold focus:outline-none" aria-label="Menu">

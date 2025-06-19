@@ -1,12 +1,13 @@
 <?php
 session_start();
-require_once ('C:\xampp\htdocs\PI-Grupo-04\PHP\classes\Usuario.php');
+
+require_once __DIR__ . 'PHP\classes\Login.php';
 
 $usuario = $_POST['username'];
 $senha = $_POST['password'];
 
 $user = new Usuario();
-$dados = $user->autenticar($usuario, $senha); // retorna array ou false
+$dados = $user->autenticar($usuario, $senha);
 
 if ($dados) {
     $_SESSION['usuario'] = [
@@ -15,10 +16,13 @@ if ($dados) {
         'tipo' => $dados['tipo']
     ];
 
-    header("Location: /PI-Grupo-04/Site/cliente.php");
+    if ($dados['tipo'] === 'Cliente') {
+        header("Location: Site\cliente.php");
+    } elseif ($dados['tipo'] === 'Advogado' || $dados['tipo'] === 'Administrador') {
+        header("Location: Site\usuario.php");
+    }
     exit();
 } else {
     header("Location: index.html?erro=1");
     exit();
 }
-?>

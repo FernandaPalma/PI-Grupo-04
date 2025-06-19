@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once 'C:\xampp\htdocs\PI-Grupo-04\PHP\classes\Cliente.php';
+require_once __DIR__ . '\classes\Cliente.php';
 
 session_start();
 
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cadastro = new Cliente();
 
     if ($cadastro->cadastrar($dados)) {
-        header('Location: /PI-Grupo-04/Site/cliente.html');
+        header('Location: Site\cliente.php');
         exit;
     } else {
         echo 'Erro ao realizar o agendamento.';

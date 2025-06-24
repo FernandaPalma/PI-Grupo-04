@@ -7,7 +7,8 @@ $usuarioObj = new Usuarios();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir_usuario'])) {
     $usuarios = new Usuarios();
-    $usuarios->excluirUsuario($_POST['excluir_id']);
+    $confirmar = isset($_POST['confirmar_exclusao_total']);
+    $usuarios->excluirUsuario($_POST['excluir_id'], $confirmar);
     header("Location: usuario.php");
     exit;
 }

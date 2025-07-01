@@ -6,7 +6,7 @@ class Database {
 
     public function __construct(
         private string $host = 'localhost',
-        private string $dbname = 'advocaciadb',
+        private string $dbname = 'themis',
         private string $usuario_db = 'root',
         private string $senha_db = ''
     ) {

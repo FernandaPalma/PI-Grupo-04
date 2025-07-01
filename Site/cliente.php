@@ -1,11 +1,15 @@
 <?php
 session_start();
 
-// Redireciona se não estiver logado
+require_once __DIR__ . ('PHP\processos.php');
+
 if (!isset($_SESSION['usuario'])) {
-  header("Location: index.html");
+  header("Location: login.html");
   exit();
 }
+
+$tiposPermitidos = ['Administrador', 'Advogado'];
+
 ?>
 
 <!DOCTYPE html>
@@ -85,85 +89,96 @@ if (!isset($_SESSION['usuario'])) {
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a href="index.html" class="nav-link text-white hover:text-gold">Início</a>
-        </li>
-        <li class="nav-item">
-          <a href="sobre.html" class="nav-link text-white hover:text-gold">Sobre</a>
-        </li>
-        <li class="nav-item">
-          <a href="agendamento.php" class="nav-link text-white hover:text-gold">Agendamento</a>
-        </li>
-        <li class="nav-item">
-          <a href="cadastro.php" class="nav-link text-white hover:text-gold">Cadastro</a>
-        </li>
-        <li class="nav-item">
-          <a href="/PI-Grupo-04/PHP/logout.php" class="nav-link text-white hover:text-gold">Sair</a>
-        </li>
+        <li class="nav-item active"><a href="index.php" class="nav-link text-white hover:text-gold">Início</a></li>
+        <li class="nav-item"><a href="sobre.html" class="nav-link text-white hover:text-gold">Sobre</a></li>
+
+         <?php if (in_array($usuario['tipo'], ['Administrador', 'Advogado'])): ?>
+      <li class="nav-item"><a href="agendamento.php" class="nav-link text-white hover:text-gold">Agendamento</a></li>
+      <li class="nav-item"><a href="cadastro.php" class="nav-link text-white hover:text-gold">Cadastro</a></li>
+      <li class="nav-item"><a href="usuario.php" class="nav-link text-white hover:text-gold">Usuários</a></li>
+        <?php endif; ?>
+
+        <li class="nav-item"><a href="financeiro.php" class="nav-link text-white hover:text-gold">Financeiro</a></li>
+        <li class="nav-item"><a href="PHP\logout.php" class="nav-link text-white hover:text-gold">Sair</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Boas-vindas -->
+   <?php if(in_array($usuario['tipo'], ['Administrador', 'Advogado'])) : ?>
+     <div class="text-center my-4">
+    <h1>Portal de processos</h1>
+  </div>
+  <?php else : ?>
   <div class="text-center my-4">
     <h1>Portal do Cliente</h1>
     <p class="text-white">Bem-vindo ao seu painel de acompanhamento de processos!</p>
   </div>
+  <?php endif ; ?>
 
   <main class="container">
+  <?php if (in_array($usuario['tipo'], ['Administrador', 'Advogado'])): ?>
+    <table class="table table-bordered table-dark table-hover">
+      <thead>
+        <tr class="text-center">
+          <th>Número</th>
+          <th>Cliente</th>
+          <th>Pendências</th>
+          <th>Valor Total</th>
+          <th>Fases</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($processos as $proc): ?>
+          <tr>
+            <td><?= htmlspecialchars($proc['numero_processo']) ?></td>
+            <td><?= htmlspecialchars($proc['nome']) ?></td>
+            <td>R$ <?= number_format($proc['pendencias'], 2, ',', '.') ?></td>
+            <td>R$ <?= number_format($proc['valor_total'], 2, ',', '.') ?></td>
+            <td>
+              <ul>
+                <?php foreach ($faseObj->listarPorProcesso((int)$proc['processo_id']) as $fase): ?>
+                  <li><?= $fase['etapa'] ?> (<?= $fase['tipo_fase'] ?><?= $fase['data_conclusao'] ? ' - ' . $fase['data_conclusao'] : '' ?>)</li>
+                <?php endforeach; ?>
+              </ul>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  <?php else: ?>
+  <h2 class="mb-4">Seus Processos</h2>
 
-    <h2 class="mb-3">Número do processo: 2876346</h2>
-
-    <!-- Fase de conhecimento -->
-    <section class="fase-conhecimento mb-4">
-      <h3>Fase de Conhecimento</h3>
-      <ol>
-        <li>Petição inicial</li>
-        <li>Defesa</li>
-        <li>Audiência inicial</li>
-        <li>Perícia</li>
-        <li>Audência de prosseguimento</li>
-        <li>Sentença</li>
-        <li>Recursos</li>
-      </ol>
-    </section>
-
-    <!-- Fase de execução -->
-    <section class="fase-execucao mb-4">
-      <h3>Fase de Execução</h3>
-      <ol>
-        <li>Liquidação da sentença</li>
-        <li>Sentença de liquidação</li>
-        <li>Citação</li>
-        <li>Penhora e avaliação</li>
-        <li>Sentença de embargos</li>
-        <li>Satisfação do crédito</li>
-        <li>Arquivamento</li>
-      </ol>
-    </section>
-
-    <!-- Financeiro -->
-    <section class="financeiro mb-4">
-      <h3>Relação Financeira</h3>
-      <p><strong>Valor Total do Processo:</strong> R$ <span id="valor-total">00,00</span></p>
-      <p><strong>Valor Pago:</strong> R$ <span id="valor-pago">00,00</span></p>
-      <p><strong>Valor a Pagar:</strong> R$ <span id="valor-a-pagar">00,00</span></p>
-      <p><strong>Pendências:</strong> R$ <span id="valor-pendencias">00,00</span></p>
-    </section>
-
-    <!-- Documentação -->
-    <section class="documentacao mb-4">
-      <h3>Documentação</h3>
-      <ul>
-        <li><a href="#">Petição Inicial</a></li>
-        <li><a href="#">Defesa</a></li>
-        <li><a href="#">Laudo Pericial</a></li>
-        <li><a href="#">Sentença</a></li>
-        <li><a href="#">Recursos</a></li>
-      </ul>
-    </section>
-
-  </main>
+  <?php if (empty($processos)): ?>
+    <p class="text-muted">Você não possui processos registrados.</p>
+  <?php else: ?>
+    <div class="row">
+      <?php foreach ($processos as $proc): ?>
+        <div class="col-md-6 mb-4">
+          <div class="card bg-dark text-white border border-gold h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-gold"><?= htmlspecialchars($proc['numero_processo']) ?></h5>
+              <p class="card-text mb-1">
+                <strong>Valor total:</strong> R$ <?= number_format($proc['valor_total'], 2, ',', '.') ?><br>
+                <strong>Valor pago:</strong> R$ <?= number_format($proc['valor_pago'], 2, ',', '.') ?><br>
+                <strong>À pagar:</strong> R$ <?= number_format($proc['valor_a_pagar'], 2, ',', '.') ?><br>
+                <strong>Pendências:</strong> R$ <?= number_format($proc['pendencias'], 2, ',', '.') ?>
+              </p>
+              <hr class="border-gold">
+              <h6 class="text-gold">Fases</h6>
+              <ul class="pl-3">
+                <?php foreach ($faseObj->listarPorProcesso((int)$proc['processo_id']) as $fase): ?>
+                  <li><?= $fase['etapa'] ?> (<?= $fase['tipo_fase'] ?><?= $fase['data_conclusao'] ? ' - ' . $fase['data_conclusao'] : '' ?>)</li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+<?php endif; ?>
+</main>
 
   <!-- Scripts Bootstrap -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

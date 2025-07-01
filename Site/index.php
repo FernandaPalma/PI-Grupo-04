@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+require_once ('PHP\processos.php');
+
+$tiposPermitidos = ['Administrador', 'Advogado'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,14 +40,34 @@
 <body class="bg-black-gold text-white">
   <header class="py-4 px-3">
     <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h4 text-gold mb-0">Escritório de Advocacia Dra Francielli Palma Maciel</h1>
+      <h1 class="h5 text-gold mb-0">Escritório de Advocacia Dra Francielli Palma Maciel</h1>
       <nav class="d-none d-md-block">
         <ul class="nav">
+
+          <?php if (!isset($_SESSION['usuario'])) : ?>
           <li class="nav-item"><a href="#sobre" class="nav-link text-white hover:text-gold">Início</a></li>
           <li class="nav-item"><a href="sobre.html" class="nav-link text-white hover:text-gold">Sobre</a></li>
-          <li class="nav-item"><a href="login.html" class="nav-link text-white hover:text-gold">Área do Cliente</a></li>
-          <li class="nav-item"><a href="login.html" class="nav-link text-white hover:text-gold">Área do Advogado</a></li>
-          <li class="nav-item"><a href="agendamento.html" class="nav-link text-white hover:text-gold">Agendamento</a></li>
+          <li class="nav-item"><a href="cliente.php" class="nav-link text-white hover:text-gold">Área do Cliente</a></li>
+          <li class="nav-item"><a href="usuario.php" class="nav-link text-white hover:text-gold">Área do Advogado</a></li>
+
+          <?php elseif (in_array($usuario['tipo'], ['Cliente'])) : ?>
+          <li class="nav-item"><a href="#sobre" class="nav-link text-white hover:text-gold">Início</a></li>
+          <li class="nav-item"><a href="sobre.html" class="nav-link text-white hover:text-gold">Sobre</a></li>
+          <li class="nav-item"><a href="cliente.php" class="nav-link text-white hover:text-gold">Área do Cliente</a></li>
+          <li class="nav-item"><a href="financeiro.php" class="nav-link text-white hover:text-gold">Financeiro</a></li> 
+          <li class="nav-item"><a href="PHP\logout.php" class="nav-link text-white hover:text-gold">Sair</a></li>   
+
+          <?php elseif (in_array($usuario['tipo'], ['Administrador', 'Advogado'])) : ?>
+          <li class="nav-item"><a href="#sobre" class="nav-link text-white hover:text-gold">Início</a></li>
+          <li class="nav-item"><a href="sobre.html" class="nav-link text-white hover:text-gold">Sobre</a></li>
+          <li class="nav-item"><a href="cliente.php" class="nav-link text-white hover:text-gold">Processos</a></li>
+          <li class="nav-item"><a href="agendamento.php" class="nav-link text-white hover:text-gold">Agendamento</a></li>
+          <li class="nav-item"><a href="cadastro.php" class="nav-link text-white hover:text-gold">Cadastro</a></li>
+          <li class="nav-item"><a href="financeiro.php" class="nav-link text-white hover:text-gold">Financeiro</a></li>
+          <li class="nav-item"><a href="usuario.php" class="nav-link text-white hover:text-gold">Usuários</a></li> 
+          <li class="nav-item"><a href="PHP\logout.php" class="nav-link text-white hover:text-gold">Sair</a></li>
+          <?php endif ; ?>
+
         </ul>
       </nav>
       <button id="menu-button" class="d-md-none btn text-gold" aria-label="Menu">

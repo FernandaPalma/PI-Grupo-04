@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
-require_once 'C:\xampp\htdocs\PI-Grupo-04\PHP\classes\DB.php';
+
+require_once __DIR__ . '\DB.php';
 
 class Cliente extends Database {
     private string $tabela = 'clientes';

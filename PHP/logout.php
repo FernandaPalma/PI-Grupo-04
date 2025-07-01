@@ -4,6 +4,6 @@ session_start();
 
 session_destroy();
 
-header("Location: /PI-Grupo-04/Site/index.html");
+header("Location: Site\index.php");
 
 exit();

@@ -1,16 +1,16 @@
 <?php
+
 session_start();
+
+require_once  __DIR__ .('PHP\financeiro.php');
+require_once __DIR__ . ('PHP\processos.php');
+
 if (!isset($_SESSION['usuario'])) {
   header("Location: index.html");
   exit();
 }
 
 $tiposPermitidos = ['Administrador', 'Advogado'];
-if (!in_array($_SESSION['usuario']['tipo'], $tiposPermitidos)) {
-  echo "Acesso negado. Você não tem permissão para acessar esta página.";
-  header("Location: cliente.php");
-  exit();
-}
 
 ?>
 
@@ -65,12 +65,16 @@ if (!in_array($_SESSION['usuario']['tipo'], $tiposPermitidos)) {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.php">Início</a></li>
           <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">Área do Cliente</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">Área Advogado</a></li>
+          <li class="nav-item"><a class="nav-link" href="cliente.php">Processos</a></li>
+
+          <?php if (in_array($usuario['tipo'], ['Administrador', 'Advogado'])): ?>
+          <li class="nav-item"><a class="nav-link" href="usuario.php">Usuários</a></li>
           <li class="nav-item"><a class="nav-link" href="agendamento.php">Agendamento</a></li>
-          <li class="nav-item"><a class="nav-link" href="/PI-Grupo-04/PHP/logout.php">Sair</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro.php">Cadastro</a></li>
+          <?php endif; ?>
+          <li class="nav-item"><a class="nav-link" href="PHP\logout.php">Sair</a></li>
           
         </ul>
       </div>
@@ -79,64 +83,61 @@ if (!in_array($_SESSION['usuario']['tipo'], $tiposPermitidos)) {
 
   <!-- Conteúdo principal -->
   <div class="container mt-5">
-    <h2 class="mb-4 text-center">Sistema Financeiro - Escritório de Advocacia</h2>
+    <h2 class="mb-4 text-center text-gold">Sistema Financeiro - Escritório de Advocacia</h2>
 
-    <div class="card">
-      <div class="card-header bg-primary text-white">
-        Saldo dos Clientes
-      </div>
-      <div class="card-body">
-        <table class="table table-hover table-bordered text-center">
-          <thead>
-            <tr>
-              <th>Nº Processo</th>
-              <th>Nome do Cliente</th>
-              <th>Data</th>
-              <th>Total (R$)</th>
-              <th>Recebido (R$)</th>
-              <th>A Receber (R$)</th>
-              <th>Não Pago (R$)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>0001234-56.2023.8.26.0001</td>
-              <td>João Silva</td>
-              <td>01/03/2024</td>
-              <td>R$ 5.000,00</td>
-              <td>R$ 5.000,00</td>
-              <td>R$ 0,00</td>
-              <td>R$ 0,00</td>
-            </tr>
-            <tr>
-              <td>0009876-12.2023.8.26.0001</td>
-              <td>Maria Souza</td>
-              <td>15/04/2024</td>
-              <td>R$ 2.500,00</td>
-              <td>R$ 2.500,00</td>
-              <td>R$ 0,00</td>
-              <td>R$ 0,00</td>
-            </tr>
-            <tr>
-              <td>0005678-34.2023.8.26.0001</td>
-              <td>Carlos Oliveira</td>
-              <td>10/05/2024</td>
-              <td>R$ 1.200,00</td>
-              <td>R$ 0,00</td>
-              <td>R$ 1.200,00</td>
-              <td>R$ 0,00</td>
-            </tr>
-            <tr>
-              <td>0001122-78.2023.8.26.0001</td>
-              <td>Fernanda Lima</td>
-              <td>22/05/2024</td>
-              <td>R$ 3.000,00</td>
-              <td>R$ 0,00</td>
-              <td>R$ 0,00</td>
-              <td class="valor-vermelho">R$ 3.000,00</td>
-            </tr>
-          </tbody>
-        </table>
+    <main class="container">
+  <?php if (in_array($usuario['tipo'], ['Advogado', 'Administrador'])): ?>
+    <table class="table table-bordered table-dark table-hover text-center">
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Cliente</th>
+          <th>Valor Pago</th>
+          <th>Valor a Pagar</th>
+          <th>Valor Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($processos as $proc): ?>
+          <tr>
+            <td><?= htmlspecialchars($proc['numero_processo']) ?></td>
+            <td><?= htmlspecialchars($proc['nome']) ?></td>
+            <td>R$ <?= number_format($proc['valor_pago'], 2, ',', '.') ?></td>
+            <td>R$ <?= number_format($proc['valor_a_pagar'], 2, ',', '.') ?></td>
+            <td>R$ <?= number_format($proc['valor_total'], 2, ',', '.') ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  <?php else: ?>
+  <div class="container mt-5">
+
+  <?php if (empty($processos)): ?>
+    <p class="text-muted">Você não possui processos registrados.</p>
+  <?php else: ?>
+    <table class="table table-bordered table-dark table-hover text-center align-middle">
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Valor Pago</th>
+          <th>Valor a Pagar</th>
+          <th>Valor Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($processos as $proc): ?>
+          <tr>
+            <td><?= htmlspecialchars($proc['numero_processo']) ?></td>
+            <td>R$ <?= number_format($proc['valor_pago'], 2, ',', '.') ?></td>
+            <td>R$ <?= number_format($proc['valor_a_pagar'], 2, ',', '.') ?></td>
+            <td>R$ <?= number_format($proc['valor_total'], 2, ',', '.') ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+    </div>
+  <?php endif; ?>
+<?php endif; ?>
       </div>
     </div>
   </div>
